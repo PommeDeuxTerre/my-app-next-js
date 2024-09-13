@@ -10,6 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <NavLayout />
+      <h1>Home</h1>
     </div>
   );
 }
