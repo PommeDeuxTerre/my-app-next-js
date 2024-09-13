@@ -25,8 +25,9 @@ const SignUp: React.FC = () => {
       setSuccess(true);
       setErrorMessage("");
     } else {
+      const error_message = (await res.json()).error;
       setSuccess(false);
-      setErrorMessage(res.statusText);
+      setErrorMessage(error_message);
     }
   };
 
