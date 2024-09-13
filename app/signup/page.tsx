@@ -7,6 +7,7 @@ import FormError from "@/app/FormError"
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
   const [error_message, setErrorMessage] = useState<string>('');
 
@@ -18,12 +19,15 @@ const SignUp: React.FC = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, email }),
+      body: JSON.stringify({ name, email, password }),
     });
 
     if (res.ok) {
       setSuccess(true);
       setErrorMessage("");
+      setTimeout(() => {
+        window.location.href = "/users";
+      }, 2000);
     } else {
       const error_message = (await res.json()).error;
       setSuccess(false);
@@ -54,6 +58,16 @@ const SignUp: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="my-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="m-4">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="my-4"
           />
         </div>
